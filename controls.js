@@ -9,52 +9,36 @@ class Controls{
         this.#addKeyboardListeners();
     }
 
-    //hash for private method as we dont need it to be acessible to public
-    #addKeyboardListeners(){
-        //use arrow func to keep "this" refering to outside scope
-        document.onkeydown=(e)=>{
-            switch(e.key){
-                case 'a':
-                case 'ArrowLeft' :
-                    this.left=true;
+    //hash for private method as we dont need it to be acessible to public 
+    //refactor, clean, improve with combined version
+    #addKeyboardListeners() {
+        const handleKey = (e, pressed) => {
+            const key = e.key.toLowerCase();
+
+            switch (key) {
+                case "arrowleft":
+                case "a":
+                    this.left = pressed;
                     break;
-                case 'd':
-                case 'ArrowRight':
-                    this.right=true;
+
+                case "arrowright":
+                case "d":
+                    this.right = pressed;
                     break;
-                case 'w':
-                case 'ArrowUp':
-                    this.forward=true;
+
+                case "arrowup":
+                case "w":
+                    this.forward = pressed;
                     break;
-                case 's':
-                case 'ArrowDown':
-                    this.reverse=true;
-                    break;
-            }
-            console.table(this)
-        }
-        //use arrow func to keep "this" refering to outside scope
-        document.onkeyup=(e)=>{
-            switch(e.key){
-                case 'a':
-                case 'ArrowLeft' :
-                    this.left=false;
-                    break;
-                case 'd':
-                case 'ArrowRight':
-                    this.right=false;
-                    break;
-                case 'w':
-                case 'ArrowUp':
-                    this.forward=false;
-                    break;
-                case 's':
-                case 'ArrowDown':
-                    this.reverse=false;
+
+                case "arrowdown":
+                case "s":
+                    this.reverse = pressed;
                     break;
             }
-            console.table(this)
-        }
-        
+        };
+
+        document.addEventListener("keydown", (e) => handleKey(e, true));
+        document.addEventListener("keyup", (e) => handleKey(e, false));
     }
 }
