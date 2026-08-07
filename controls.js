@@ -11,28 +11,27 @@ class Controls{
 
     //hash for private method as we dont need it to be acessible to public 
     //refactor, clean, improve with combined version
+    //swith to e.code use for wasd controls on any keyboard
     #addKeyboardListeners() {
         const handleKey = (e, pressed) => {
-            const key = e.key.toLowerCase();
-
-            switch (key) {
-                case "arrowleft":
-                case "a":
+            switch (e.code) {
+                case "ArrowLeft":
+                case "KeyA":
                     this.left = pressed;
                     break;
 
-                case "arrowright":
-                case "d":
+                case "ArrowRight":
+                case "KeyD":
                     this.right = pressed;
                     break;
 
-                case "arrowup":
-                case "w":
+                case "ArrowUp":
+                case "KeyW":
                     this.forward = pressed;
                     break;
 
-                case "arrowdown":
-                case "s":
+                case "ArrowDown":
+                case "KeyS":
                     this.reverse = pressed;
                     break;
             }
